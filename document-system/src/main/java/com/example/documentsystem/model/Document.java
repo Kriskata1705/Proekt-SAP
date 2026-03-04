@@ -1,29 +1,67 @@
 package com.example.documentsystem.model;
+import jakarta.persistence.*;
+import java.time.Instant;
+
+@Entity// Казва на JPA/Hibernate: този клас е таблица в базата (Entity)
+@Table(name = "documents")// Името на таблицата в DB да е "documents"
 
 import java.util.*;
 
 public class Document {
-
+    @Id//primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//generira id avtomatichno
+    private Long id;//id na dokumenta unikalno
+    @Column(nullable = false)//ne moje da e null v tablicata
     private String title;
-    private Author author;
-    private List<Version> versions = new ArrayList<>();
+    @Column(columnDefinition = "text")//po dulug tekst ot varchar
+    private String description;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "created_by")//foreign key
+    private User createdBy;
+    @Column (name = "created_at", nullable = false)
+    private Instant createdAt = Instant.now();//koga e suzdaden dokumenta
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt = Instant.now();
+    @OneToOne//dokumenta ima edna aktivna versiq
+    @JoinColumn(name = "active_version_id")//fk 
+    private Version activeVersion;
 
-    public Document(String title, Author author) {
+    public Document(){}
+
+    public Document(String title, String description, User createdBy){
         this.title = title;
-        this.author = author;
+        this.description = description;
+        this.createdBy = createdBy;
     }
 
-    public void addVersion(String content) {
-        Version v = new Version(content, author);
-        versions.add(v);
+    @PreUpdate//JPA hook
+    void onUpdate(){
+        this.updatedAt = Instant.now();//obnovqva updatedAt
     }
 
-    public List<Version> getVersions() {
-        return versions;
+    public Long getId(){
+        return id;
+    }
+    public String getTitle(){
+        return title;
+    }
+    public String getDescription(){
+        return description;
+    }
+    public User getCreatedBy(){
+        return createdBy;
+    }
+    public Instant getCreatedAt(){
+        return createdAt;
+    }
+    public Instant getUpdatedAt(){
+        return updatedAt;
+    }
+    public Version getActiveVersion(){
+        return activeVersion;
     }
 
-    @Override
-    public String toString() {
-        return "Document: " + title;
+    public void setActiveVersion(Version activeVersion){
+        this.activeVersion = activeVersion;
     }
 }
