@@ -2,10 +2,10 @@ package com.example.documentsystem.model;
 import jakarta.persistence.*;
 import java.time.Instant;
 
-@Entity// Казва на JPA/Hibernate: този клас е таблица в базата (Entity)
+@Entity // Казва на JPA/Hibernate: този клас е таблица в базата (Entity)
 @Table(name = "documents")// Името на таблицата в DB да е "documents"
 
-import java.util.*;
+
 
 public class Document {
     @Id//primary key
@@ -63,5 +63,13 @@ public class Document {
 
     public void setActiveVersion(Version activeVersion){
         this.activeVersion = activeVersion;
+    }
+
+    public void setTitle(String title) {
+    this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

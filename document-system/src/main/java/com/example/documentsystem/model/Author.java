@@ -11,6 +11,6 @@ public class Author extends User {
     }
 
     public Document createDocument(String title) {
-        return new Document(title, this);
+        return new Document(title, this.username + "'s document", this);
     }
 }

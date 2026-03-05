@@ -6,15 +6,15 @@ public class User {
 
     @Id
     @GeneratedValue
-    private Long id;
+    protected Long id;
 
     @Column(unique = true)
-    private String username;
+    protected String username;
 
-    private String password;
+    protected String password;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    protected Role role;
 
     public User() {}
 
@@ -23,7 +23,15 @@ public class User {
         this.password = password;
         this.role = role;
     }
-
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setRole(Role role) {
+        this.role = role;
+    }
     public Role getRole() {
         return role;
     }
