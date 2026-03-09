@@ -1,0 +1,116 @@
+Разбрах! Ще създам само frontend с:
+- Стандартна REST структура
+- Конфигурация за localhost:8080
+- JWT автентикация
+- Mock данни за тестване (лесно ще го свържете със Spring Boot)
+Action: file_editor create /app/frontend/src/index.css --file-text "@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 240 6% 4%;
+        --foreground: 0 0% 98%;
+        --card: 240 5% 10%;
+        --card-foreground: 0 0% 98%;
+        --popover: 240 5% 10%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 217 91% 60%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 240 4% 16%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 240 4% 16%;
+        --muted-foreground: 240 5% 65%;
+        --accent: 240 4% 16%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 350 89% 60%;
+        --destructive-foreground: 0 0% 98%;
+        --success: 160 84% 39%;
+        --success-foreground: 0 0% 100%;
+        --warning: 38 92% 50%;
+        --warning-foreground: 0 0% 0%;
+        --border: 240 4% 16%;
+        --input: 240 4% 16%;
+        --ring: 217 91% 60%;
+        --radius: 0.375rem;
+    }
+}
+
+* {
+    border-color: hsl(var(--border));
+}
+
+body {
+    margin: 0;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Chivo', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--secondary));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+}
+
+/* Diff viewer styles */
+.diff-added {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+}
+
+.diff-removed {
+    background-color: rgba(244, 63, 94, 0.15);
+    color: #fb7185;
+}
+
+.diff-modified {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+}
+
+/* Glass morphism */
+.glass {
+    backdrop-filter: blur(16px);
+    background-color: rgba(24, 24, 27, 0.7);
+}
+
+/* Grid pattern background */
+.grid-pattern {
+    background-image: radial-gradient(circle, hsl(240 4% 16%) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+@layer base {
+    [data-debug-wrapper=\"true\"] {
+        display: contents !important;
+    }
+}
+"
+Observation: Overwrite successful: /app/frontend/src/index.css
